@@ -1,46 +1,49 @@
+""" first we check if the config file exists, if it
+    exists than we check
+    if it has the correct structure, if it does, do nothing,
+    if it doesn't exist or isn't correct
+    we recreate it with default parameters"""
+
 import os
-import re, pkg_resources, sys
+import re
+from utils import string_resources
 
-config_file_structure = 'cpu_percent=1\ncpu_freq=1\nram_percent=1\nfan_speed=1\ndisk_usage=1' \
-                        '\nsystem_temperatures=1\ncommunication_elapsed_time=5sec'
 
-config_file_regex = r'cpu_percent=(0|1)\ncpu_freq=(0|1)\nram_percent=(0|1)\nfan_speed=(0|1)' \
-                    r'\ndisk_usage=(0|1\nsystem_temperatures=(0|1))\ncommunication_elapsed_time=(\d|\d\d|\d\d\d)sec'
+class CreateConfigFile:
 
-''' first we check if the config file exists, if it exists than we check
-    if it has the correct structure, if it does, do nothing, if it doesn't exist or isn't correct
-    we recreate it with default parameters'''
+    def __init__(self):
 
-def create_config_file():
-    config_file = open('../config.txt', 'w')
+        self.config_file_structure = string_resources.get_config_file_structure()
 
-    config_file.write(config_file_structure)
-    config_file.close()
+        self.config_file_regex = string_resources.get_config_file_regex()
 
-def check_file_structure():
-    config_file = open('../config.txt', 'r')
+        self.root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        self.config_file_path = os.path.join(self.root, 'config.txt')
 
-    if re.search(config_file_regex, config_file.read()) is None:
+    def create_config_file(self):
+        config_file = open(self.config_file_path, 'w')
+
+        config_file.write(self.config_file_structure)
         config_file.close()
-        return False
-    else:
+
+    def check_file_structure(self):
+        config_file = open(self.config_file_path, 'r')
+
+        if re.search(self.config_file_regex, config_file.read()) is None:
+            config_file.close()
+            return False
+
         config_file.close()
         return True
 
+    def check_if_config_file_exists(self):
 
-def check_if_config_file_exists():
+        if os.path.isfile(self.config_file_path):
 
-    if os.path.isfile('../config.txt'):
+            if self.check_file_structure() is False:
+                config_file = open('../config.txt', 'w')
+                config_file.write(self.config_file_structure)
+                config_file.close()
 
-        if check_file_structure() is False:
-            config_file = open('../config.txt', 'w')
-            config_file.write(config_file_structure)
-            config_file.close()
-
-    else:
-        create_config_file()
-
-
-if __name__ == '__main__':
-
-    check_if_config_file_exists()
+        else:
+            self.create_config_file()
