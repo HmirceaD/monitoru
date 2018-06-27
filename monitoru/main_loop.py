@@ -15,7 +15,8 @@ def start_loop():
         command_line_arguments = input("$>")
 
         if command_line_arguments != "":
-            argument_parser.set_arguments(command_line_arguments)
+            result = argument_parser.parse_arguments(command_line_arguments)
+
 
 
 def init_config():
