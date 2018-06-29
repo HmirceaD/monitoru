@@ -6,8 +6,28 @@ from utils import string_resources
 from monitoru.parse_arguments import ParseArguments
 
 
-def start_loop():
+def config_function():
+    print("config")
 
+
+def reset_function():
+    print("reset")
+
+
+def stop_function():
+    print("stop")
+
+
+def help_function():
+    print("help")
+
+
+command_functions = [help_function, stop_function, reset_function, config_function]
+
+
+def start_loop():
+    """starts the loop which will listen for commands
+    and monitor the metrics and the configured time frame"""
     print(string_resources.get_main_loop_start_message())
     argument_parser = ParseArguments()
 
@@ -15,8 +35,9 @@ def start_loop():
         command_line_arguments = input("$>")
 
         if command_line_arguments != "":
-            result = argument_parser.parse_arguments(command_line_arguments)
-
+            result = argument_parser.check_command(command_line_arguments)
+            if result != -1:
+                command_functions[result]()
 
 
 def init_config():

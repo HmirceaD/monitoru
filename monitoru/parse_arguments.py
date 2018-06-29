@@ -10,7 +10,7 @@ class ParseArguments:
         self.supported_commands = ['help', 'stop',
                                    'reset', 'config']
 
-    def parse_arguments(self, argument):
+    def check_command(self, argument):
         """check if the user's command mathches
         the system's supported commands"""
 
