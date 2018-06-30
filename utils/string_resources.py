@@ -15,7 +15,7 @@ def get_config_file_regex():
            r'\nfan_speed=(0|1)\ndisk_usage=(0|1' \
            r'\nsystem_temperatures=(0|1))' \
            r'\ncommunication_elapsed_time=' \
-           r'(\d|\d\d|\d\d\d)sec'
+           r'(\d|\d\d)sec'
 
 
 def get_main_loop_start_message():
