@@ -17,13 +17,3 @@ def get_config_file_regex():
            r'\ncommunication_elapsed_time=' \
            r'(\d|\d\d)sec'
 
-
-def get_main_loop_start_message():
-    return '============\nStart loop\n' \
-           'help to use commands\n\n'
-
-
-def get_main_loop_help_message():
-    return "\n'reset' for reseting the program" \
-           "\n'stop' for stopping the program" \
-           "\n'config' to open up the config file"
