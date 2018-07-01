@@ -1,4 +1,6 @@
 from psutil import cpu_percent
 
-while True is True:
-    print(cpu_percent(1))
+class MainMonitoring:
+
+    def monitor(self):
+        pass
