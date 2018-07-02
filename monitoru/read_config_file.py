@@ -11,10 +11,6 @@ class ConfigFileReader:
         self.root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         self.config_file_path = os.path.join(self.root, 'config.txt')
 
-    def get_config_contents(self):
-        return self.get_send_communication_time(), \
-               self.get_metrics()
-
     def get_send_communication_time(self):
         temp_file = open(self.config_file_path, "r")
 
