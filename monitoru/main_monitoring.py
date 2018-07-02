@@ -10,6 +10,10 @@ class MainMonitoring:
         self.communication_period = self.config_file_reader.get_send_communication_time()
         self.metrics_array = self.config_file_reader.get_metrics()
         self.monitoring_object = {}
+        self.monitor_functions = [self.cpu_freq,
+                                  self.cpu_percent,
+                                  self.ram_percent,
+                                  self.disk_usage]
 
     def start_monitor_loop(self):
 
@@ -22,7 +26,9 @@ class MainMonitoring:
 
     def add_metrics_to_monitor_object(self, communication_time, metrics_array):
 
-        print(metrics_array)
+        for index in range(len(metrics_array)):
+            if metrics_array[index] == '1':
+                self.monitor_functions[index]()
 
         pid = Timer(int(communication_time),
                     self.add_metrics_to_monitor_object,
@@ -52,6 +58,3 @@ class MainMonitoring:
     '''def system_temperatures(self):
         self.monitoring_object['system_temperatures'] = \
             psutil.sensors_temperatures()'''
-
-coi = MainMonitoring()
-coi.start_monitor_loop()

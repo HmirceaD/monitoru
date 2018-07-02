@@ -2,11 +2,14 @@
 check the config files for the things to monitor and send to rabbitmq"""
 
 from monitoru.create_config_file import CreateConfigFile
+from monitoru.main_monitoring import MainMonitoring
 
 
 def start_loop():
     """starts the loop which will
      monitor the metrics and the configured time frame"""
+    monitoru = MainMonitoring()
+    monitoru.start_monitor_loop()
 
 
 def init_config():
