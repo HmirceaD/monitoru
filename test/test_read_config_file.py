@@ -22,21 +22,19 @@ class TestReadConfigFile(unittest.TestCase):
         self.test_config_file.truncate(0)
         self.test_config_file.write('cpu_percent=1\ncpu_freq=0' +
                                     '\nram_percent=1' +
-                                    '\nfan_speed=0\ndisk_usage=1' +
-                                    '\nsystem_temperatures=0\n' +
-                                    'communication_elapsed_time=5sec')
+                                    '\ndisk_usage=1' +
+                                    '\ncommunication_elapsed_time=5sec')
         self.test_config_file.close()
 
-        self.assertEqual(self.read_config_file.get_metrics(), ['1', '0', '1', '0', '1', '0'])
+        self.assertEqual(self.read_config_file.get_metrics(), ['1', '0', '1', '1'])
 
         self.test_config_file = open(self.config_file_path, "r+")
         self.test_config_file.truncate(0)
         self.test_config_file.write('cpu_percent=0\ncpu_freq=0' +
                                     '\nram_percent=0' +
-                                    '\nfan_speed=0\ndisk_usage=0' +
-                                    '\nsystem_temperatures=0\n' +
-                                    'communication_elapsed_time=5sec')
+                                    '\ndisk_usage=0' +
+                                    '\ncommunication_elapsed_time=5sec')
         self.test_config_file.close()
 
-        self.assertEqual(self.read_config_file.get_metrics(), ['0', '0', '0', '0', '0', '0'])
-        self.assertNotEqual(self.read_config_file.get_metrics(), ['0', '0', '1', '1', '0', '1'])
+        self.assertEqual(self.read_config_file.get_metrics(), ['0', '0', '0', '0'])
+        self.assertNotEqual(self.read_config_file.get_metrics(), ['0', '0', '1', '1'])

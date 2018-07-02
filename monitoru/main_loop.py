@@ -9,7 +9,6 @@ def start_loop():
      monitor the metrics and the configured time frame"""
 
 
-
 def init_config():
     config_file = CreateConfigFile()
     config_file.check_if_config_file_exists()
