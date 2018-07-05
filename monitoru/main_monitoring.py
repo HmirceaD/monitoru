@@ -21,7 +21,7 @@ class MainMonitoring:
                                   self.ram_percent,
                                   self.disk_usage]
         self.server_connection = ServerConnection(
-            address='localhost', port=5001)
+            address='localhost')
 
     def start_monitor_loop(self):
         """first gets the information from the config
@@ -43,7 +43,7 @@ class MainMonitoring:
                 self.monitor_functions[index]()
 
         self.server_connection.send_packet(json.dumps(
-            self.monitoring_object, indent=4))
+            self.monitoring_object, indent=1))
 
         pid = Timer(int(communication_time),
                     self.add_metrics_to_monitor_object,
