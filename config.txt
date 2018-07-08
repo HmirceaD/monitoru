@@ -1,5 +1,5 @@
-cpu_percent=1
-cpu_freq=1
-ram_percent=1
-disk_usage=1
+cpu_percent=0
+cpu_freq=0
+ram_percent=0
+disk_usage=0
 communication_elapsed_time=5sec

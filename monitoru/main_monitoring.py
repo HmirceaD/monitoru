@@ -2,8 +2,8 @@
 from threading import Timer
 import json
 import psutil
-from monitoru.read_config_file import ConfigFileReader
-from monitoru.server_connection import ServerConnection
+from monitoru import read_config_file
+from monitoru import server_connection
 
 
 class MainMonitoring:
@@ -11,7 +11,7 @@ class MainMonitoring:
     the machine and sends the info to a server as a json
     object converted from a python dictionary"""
     def __init__(self):
-        self.config_file_reader = ConfigFileReader()
+        self.config_file_reader = read_config_file.ConfigFileReader()
         self.communication_period = \
             self.config_file_reader.get_send_communication_time()
         self.metrics_array = self.config_file_reader.get_metrics()
@@ -20,16 +20,16 @@ class MainMonitoring:
                                   self.cpu_percent,
                                   self.ram_percent,
                                   self.disk_usage]
-        self.server_connection = ServerConnection(
+        self.server_connection = server_connection.ServerConnection(
             address='localhost')
 
     def start_monitor_loop(self):
         """first gets the information from the config
         file and starts the function to start gathering info"""
-        read_config_file = ConfigFileReader()
+        read_file = read_config_file.ConfigFileReader()
 
-        communication_time = read_config_file.get_send_communication_time()
-        metrics_array = read_config_file.get_metrics()
+        communication_time = read_file.get_send_communication_time()
+        metrics_array = read_file.get_metrics()
 
         self.add_metrics_to_monitor_object(communication_time, metrics_array)
 
@@ -38,6 +38,7 @@ class MainMonitoring:
         and creates the object and sends the object to the through
         the connection object, then starts the timer to call after
         n seconds and calls itself again"""
+
         for index in range(len(metrics_array)):
             if metrics_array[index] == '1':
                 self.monitor_functions[index]()
