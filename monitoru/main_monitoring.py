@@ -46,10 +46,10 @@ class MainMonitoring:
             if metrics_array[index] == '1':
                 self.monitor_functions[index]()
 
-        node_element = {self.object_id: self.monitoring_object}
-
+        #node_element = {self.object_id: self.monitoring_object}
+        self.monitoring_object['node_id'] = self.object_id
         self.server_connection.send_packet(json.dumps(
-            node_element, indent=1))
+            self.monitoring_object, indent=1))
 
         pid = Timer(int(communication_time),
                     self.add_metrics_to_monitor_object,
