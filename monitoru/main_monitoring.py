@@ -4,6 +4,7 @@ import json
 import psutil
 from monitoru import read_config_file
 from monitoru import server_connection
+from monitoru import create_unique_id
 
 
 class MainMonitoring:
@@ -22,6 +23,8 @@ class MainMonitoring:
                                   self.disk_usage]
         self.server_connection = server_connection.ServerConnection(
             address='localhost')
+
+        self.object_id = create_unique_id.CreateUniqueId().get_unique_id_from_file()
 
     def start_monitor_loop(self):
         """first gets the information from the config
@@ -43,8 +46,10 @@ class MainMonitoring:
             if metrics_array[index] == '1':
                 self.monitor_functions[index]()
 
+        node_element = {self.object_id: self.monitoring_object}
+
         self.server_connection.send_packet(json.dumps(
-            self.monitoring_object, indent=1))
+            node_element, indent=1))
 
         pid = Timer(int(communication_time),
                     self.add_metrics_to_monitor_object,

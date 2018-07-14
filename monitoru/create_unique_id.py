@@ -77,13 +77,13 @@ class CreateUniqueId:
 
         unique_id_result = re.findall(regex, unique_id_file.read())
         unique_id_file.close()
-        return unique_id_result
+        return unique_id_result[0]
 
     def check_file_structure(self):
         """checks if the unique id exists
         and if it is the correct structure"""
         unique_id_result = self.get_unique_id_from_file()
 
-        if unique_id_result is None or len(unique_id_result) != 1:
+        if unique_id_result is None:
 
             self.create_unique_id_file()
