@@ -24,7 +24,9 @@ class MainMonitoring:
         self.server_connection = server_connection.ServerConnection(
             address='localhost')
 
-        self.object_id = create_unique_id.CreateUniqueId().get_unique_id_from_file()
+        unique_id_manager = create_unique_id.CreateUniqueId()
+        unique_id_manager.handle_unique_id_file()
+        self.object_id = unique_id_manager.get_unique_id_from_file()
 
     def start_monitor_loop(self):
         """first gets the information from the config
@@ -41,12 +43,11 @@ class MainMonitoring:
         and creates the object and sends the object to the through
         the connection object, then starts the timer to call after
         n seconds and calls itself again"""
-
         for index in range(len(metrics_array)):
             if metrics_array[index] == '1':
                 self.monitor_functions[index]()
 
-        #node_element = {self.object_id: self.monitoring_object}
+
         self.monitoring_object['node_id'] = self.object_id
         self.server_connection.send_packet(json.dumps(
             self.monitoring_object, indent=1))

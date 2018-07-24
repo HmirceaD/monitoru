@@ -51,19 +51,22 @@ class CreateUniqueId:
         unique_id = uuid.uuid4()
 
         if self.system == "Linux":
-            unique_id_file = open("." + self.linux_filepath, "w")
+            unique_id_file = open(self.linux_filepath, "w")
             unique_id_file.write("<Don't overwrite this, stupid>"
                                  "\n{}"
                                  "\n</Don't overwrite this, stupid>"
                                  .format(unique_id))
             unique_id_file.close()
         if self.system == "Windows":
-            open(self.windows_filepath, "w")\
-                .write("<Don't overwrite this, stupid>"
-                       "\n{}"
-                       "\n</Don't overwrite this, stupid>"
-                       .format(unique_id))
+            unique_id_file = open(self.windows_filepath, "w")
+
+            unique_id_file.write("<Don't overwrite this, stupid>"
+                                 "\n{}"
+                                 "\n</Don't overwrite this, stupid>"
+                                 .format(unique_id))
             subprocess.check_call(["attrib", "+H", self.windows_filepath])
+
+            unique_id_file.close()
 
     def get_unique_id_from_file(self):
         """extracts the unique id from the file"""
@@ -77,7 +80,11 @@ class CreateUniqueId:
 
         unique_id_result = re.findall(regex, unique_id_file.read())
         unique_id_file.close()
-        return unique_id_result[0]
+
+        try:
+            return unique_id_result[0]
+        except IndexError:
+            return None
 
     def check_file_structure(self):
         """checks if the unique id exists

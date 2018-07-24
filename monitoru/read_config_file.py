@@ -32,7 +32,8 @@ class ConfigFileReader:
         metrics_groups = re.search(r'cpu_percent=(\d)' +
                                    r'\ncpu_freq=(\d)' +
                                    r'\nram_percent=(\d)' +
-                                   r'\ndisk_usage=(\d)', temp_file.read())
+                                   r'\ndisk_usage=(\d)',
+                                   temp_file.read())
 
         metrics_array = [metrics_groups.group(1),
                          metrics_groups.group(2),
