@@ -17,7 +17,7 @@ class ConfigFileReader:
         temp_file = open(self.config_file_path, "r")
 
         communication_time = re.search(
-            r"communication_elapsed_time=(\d|\d\d)sec",
+            r"communication_elapsed_time=([1-9]{1,2})sec",
             temp_file.read())
 
         temp_file.close()

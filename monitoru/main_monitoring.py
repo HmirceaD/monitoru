@@ -47,7 +47,6 @@ class MainMonitoring:
             if metrics_array[index] == '1':
                 self.monitor_functions[index]()
 
-
         self.monitoring_object['node_id'] = self.object_id
         self.server_connection.send_packet(json.dumps(
             self.monitoring_object, indent=1))
