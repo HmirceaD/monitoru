@@ -5,6 +5,7 @@ import psutil
 from monitoru import read_config_file
 from monitoru import server_connection
 from monitoru import create_unique_id
+import atexit
 
 
 class MainMonitoring:
@@ -27,6 +28,8 @@ class MainMonitoring:
         unique_id_manager = create_unique_id.CreateUniqueId()
         unique_id_manager.handle_unique_id_file()
         self.object_id = unique_id_manager.get_unique_id_from_file()
+
+        atexit.register(self.server_connection.close_connection())
 
     def start_monitor_loop(self):
         """first gets the information from the config
