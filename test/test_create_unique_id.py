@@ -1,14 +1,20 @@
+"""module that contains the unittest for CreateUniqueId"""
 from unittest import TestCase
-from monitoru.create_unique_id import CreateUniqueId
 from os import remove
 from os.path import isfile
+from monitoru import create_unique_id
 
 
 class TestCreateUniqueId(TestCase):
-
+    """tests functions from the CreateUniqueId class,
+    specifically the function that tests wether the file
+    exists or not, the function that creates the file,
+    and the function that extracts the unique id from the file"""
     @classmethod
     def setUpClass(cls):
-        cls.create_unique_id = CreateUniqueId()
+        """create the file path depending on the os that the
+        program in run on"""
+        cls.create_unique_id = create_unique_id.CreateUniqueId()
 
         if cls.create_unique_id.system == "Windows":
             cls.system_file_path = cls.create_unique_id.windows_filepath
@@ -16,7 +22,8 @@ class TestCreateUniqueId(TestCase):
             cls.system_file_path = cls.create_unique_id.linux_filepath
 
     def test_check_if_file_exists(self):
-
+        """tests the function when the file exists and
+        when it does not"""
         try:
             remove(self.system_file_path)
         except FileNotFoundError:
@@ -29,7 +36,8 @@ class TestCreateUniqueId(TestCase):
         self.assertEqual(self.create_unique_id.check_if_file_exists(), 1)
 
     def test_get_unique_id_from_file(self):
-
+        """hardcodes an incorrect unique id and then a
+        correct one and checks the outputs"""
         try:
             remove(self.system_file_path)
         except FileNotFoundError:
@@ -66,7 +74,8 @@ class TestCreateUniqueId(TestCase):
                             "b85f-fd379f4cd")
 
     def test_create_unique_id_file(self):
-
+        """checks if the file is created after
+        was deleted"""
         try:
             remove(self.system_file_path)
         except FileNotFoundError:

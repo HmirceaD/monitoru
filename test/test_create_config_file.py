@@ -1,25 +1,26 @@
-"""unit test for checking if the create_config_file module works properly
-currently testing if the create file function creates file correctly
-and if check file function returns correct results"""
-
+"""module that contains the unittest for the CreateConfigFile class"""
 import unittest
 import os
-from monitoru.create_config_file import CreateConfigFile
+from monitoru import create_config_file
 from utils import string_resources
 
 
 class TestCreateConfigFile(unittest.TestCase):
+    """unit test for checking if the create_config_file module works properly
+    currently testing if the create file function creates file correctly
+    and if check file function returns correct results"""
 
     def setUp(self):
 
         self.root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         self.config_file_path = os.path.join(self.root, 'config.txt')
 
-        self.config_file_structure = string_resources.get_config_file_structure()
+        self.config_file_structure = \
+            string_resources.get_config_file_structure()
 
         self.config_file = open(self.config_file_path, 'r+')
 
-        self.test_module = CreateConfigFile()
+        self.test_module = create_config_file.CreateConfigFile()
 
     def tearDown(self):
         self.config_file.close()
