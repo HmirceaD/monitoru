@@ -18,6 +18,7 @@ class TestCreateConfigFile(unittest.TestCase):
         self.config_file_structure = string_resources.get_config_file_structure()
 
         self.config_file = open(self.config_file_path, 'r+')
+
         self.test_module = CreateConfigFile()
 
     def tearDown(self):
@@ -26,10 +27,12 @@ class TestCreateConfigFile(unittest.TestCase):
     def test_check_file_structure(self):
         """"checks check_file_structure function if it returns correct result
         under certain circumstances"""
+        self.config_file.write(string_resources.get_config_file_structure())
         self.assertEqual(self.test_module.check_file_structure(), True)
         self.config_file.close()
 
         self.config_file = open(self.config_file_path, 'w')
+
         self.config_file.close()
 
         self.assertEqual(self.test_module.check_file_structure(), False)
@@ -41,7 +44,3 @@ class TestCreateConfigFile(unittest.TestCase):
 
         self.assertEqual(os.path.exists(self.config_file_path), 1)
         self.assertEqual(self.config_file.read(), self.config_file_structure)
-
-
-if __name__ == '__main__':
-    unittest.main()

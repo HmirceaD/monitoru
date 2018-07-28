@@ -14,6 +14,7 @@ class TestReadConfigFile(unittest.TestCase):
     def test_get_send_communication_time(self):
 
         self.assertEqual(self.read_config_file.get_send_communication_time(), "5")
+
         self.assertNotEqual(self.read_config_file.get_send_communication_time(), "6969")
 
     def test_get_metrics(self):

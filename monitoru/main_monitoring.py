@@ -29,7 +29,7 @@ class MainMonitoring:
         unique_id_manager.handle_unique_id_file()
         self.object_id = unique_id_manager.get_unique_id_from_file()
 
-        atexit.register(self.server_connection.close_connection())
+        atexit.register(self.server_connection.close_connection)
 
     def start_monitor_loop(self):
         """first gets the information from the config

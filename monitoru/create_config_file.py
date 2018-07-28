@@ -49,7 +49,7 @@ class CreateConfigFile:
         if os.path.isfile(self.config_file_path):
 
             if self.check_file_structure() is False:
-                config_file = open('../config.txt', 'w')
+                config_file = open(self.config_file_path, 'w')
                 config_file.write(self.config_file_structure)
                 config_file.close()
 

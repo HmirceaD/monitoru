@@ -25,5 +25,5 @@ def init_client():
     begin_sending_packets()
 
 
-if __name__ == "__main__":
-    init_client()
+#if __name__ == "__main__":
+ #   init_client()
