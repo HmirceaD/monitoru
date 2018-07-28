@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="53ced1d9-23b5-4e81-8fef-f73689972f57" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/other.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/monitoru.iml" afterPath="$PROJECT_DIR$/.idea/monitoru.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/test/test_main_loop.py" afterPath="$PROJECT_DIR$/test/test_main_loop.py" />
-      <change beforePath="$PROJECT_DIR$/test/test_main_monitoring.py" afterPath="$PROJECT_DIR$/test/test_main_monitoring.py" />
-    </list>
+    <list default="true" id="53ced1d9-23b5-4e81-8fef-f73689972f57" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,7 +11,7 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/monitoru$create_unique_id.coverage" NAME="create_unique_id Coverage Results" MODIFIED="1531498224648" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/monitoru" />
-    <SUITE FILE_PATH="coverage/monitoru$Unittests_in_test_main_monitoring_py.coverage" NAME="Unittests in test_main_monitoring.py Coverage Results" MODIFIED="1532792157061" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/monitoru$Unittests_in_test_main_monitoring_py.coverage" NAME="Unittests in test_main_monitoring.py Coverage Results" MODIFIED="1532793174454" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/monitoru$Unittests_in_test_main_loop_py.coverage" NAME="Unittests in test_main_loop.py Coverage Results" MODIFIED="1532791087108" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/monitoru$create_config_file.coverage" NAME="create_config_file Coverage Results" MODIFIED="1530458428451" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/monitoru" />
     <SUITE FILE_PATH="coverage/monitoru$Unittests_in_test_parse_arguments_py.coverage" NAME="Unittests in test_parse_arguments.py Coverage Results" MODIFIED="1530374757279" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
@@ -56,6 +50,16 @@
     <splitter split-orientation="horizontal" split-proportion="0.6100434">
       <split-first>
         <leaf>
+          <file leaf-file-name="server_connection.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/monitoru/server_connection.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="312">
+                  <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
           <file leaf-file-name="unique_id.txt" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/unique_id.txt">
               <provider selected="true" editor-type-id="text-editor">
@@ -66,11 +70,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="test_main_monitoring.py" pinned="false" current-in-tab="true">
+          <file leaf-file-name="test_main_monitoring.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/test/test_main_monitoring.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="336">
-                  <caret line="35" column="74" lean-forward="true" selection-start-line="35" selection-start-column="74" selection-end-line="35" selection-end-column="74" />
+                <state relative-caret-position="408">
+                  <caret line="38" column="28" lean-forward="true" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="28" />
                   <folding>
                     <element signature="e#0#29#0" expanded="true" />
                   </folding>
@@ -117,7 +121,7 @@
           <file leaf-file-name="test_main_loop.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/test/test_main_loop.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
+                <state relative-caret-position="234">
                   <caret line="15" column="16" lean-forward="false" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
                   <folding>
                     <element signature="e#0#29#0" expanded="true" />
@@ -397,9 +401,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_in_test_main_monitoring_py - 2018.07.28 at 18h 23m 41s.xml">
-      <configuration name="Unittests in test_main_monitoring.py" configurationId="tests" />
-    </history-entry>
     <history-entry file="Unittests_in_test_main_monitoring_py - 2018.07.28 at 18h 26m 20s.xml">
       <configuration name="Unittests in test_main_monitoring.py" configurationId="tests" />
     </history-entry>
@@ -425,6 +426,9 @@
       <configuration name="Unittests in test_main_monitoring.py" configurationId="tests" />
     </history-entry>
     <history-entry file="Unittests_in_test_main_monitoring_py - 2018.07.28 at 18h 36m 01s.xml">
+      <configuration name="Unittests in test_main_monitoring.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_test_main_monitoring_py - 2018.07.28 at 18h 52m 58s.xml">
       <configuration name="Unittests in test_main_monitoring.py" configurationId="tests" />
     </history-entry>
   </component>
@@ -676,14 +680,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/monitoru/server_connection.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="14" column="32" lean-forward="false" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/setup.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
@@ -796,7 +792,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/test_main_loop.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="234">
           <caret line="15" column="16" lean-forward="false" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
@@ -816,11 +812,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/test_main_monitoring.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="35" column="74" lean-forward="true" selection-start-line="35" selection-start-column="74" selection-end-line="35" selection-end-column="74" />
+        <state relative-caret-position="408">
+          <caret line="38" column="28" lean-forward="true" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="28" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/monitoru/server_connection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
