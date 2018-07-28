@@ -13,7 +13,7 @@ class TestMainLoop(TestCase):
         source_mock = MagicMock()
 
         with patch('monitoru.main_loop.init_config', source_mock.function1), \
-             patch('monitoru.main_loop.begin_sending_packets', source_mock.function2):
+                patch('monitoru.main_loop.begin_sending_packets', source_mock.function2):
 
             expected = [call.function1(),
                         call.function2()]
