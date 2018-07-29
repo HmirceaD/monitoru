@@ -17,11 +17,16 @@ class ConfigFileReader:
         temp_file = open(self.config_file_path, "r")
 
         communication_time = re.search(
-            r"communication_elapsed_time=([1-9]{1,2})sec",
+            # master of regex
+            r"communication_elapsed_time=([1-9]|[1-9][0-9])sec",
             temp_file.read())
 
         temp_file.close()
-        return communication_time.group(1)
+
+        try:
+            return communication_time.group(1)
+        except AttributeError:
+            return 5
 
     def get_metrics(self):
         """reads and returns an array of 0 or

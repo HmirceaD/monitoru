@@ -1,11 +1,11 @@
 """Module that holds the MainMonitoring class"""
 from threading import Timer
 import json
+import atexit
 import psutil
 from monitoru import read_config_file
 from monitoru import server_connection
 from monitoru import create_unique_id
-import atexit
 
 
 class MainMonitoring:

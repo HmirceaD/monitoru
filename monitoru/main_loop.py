@@ -23,7 +23,3 @@ def init_client():
     """calls the two main functions here"""
     init_config()
     begin_sending_packets()
-
-
-#if __name__ == "__main__":
- #   init_client()
