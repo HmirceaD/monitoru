@@ -3,6 +3,9 @@ from threading import Timer
 import json
 import atexit
 import psutil
+import sys
+from pika.exceptions import ConnectionClosed
+from socket import gaierror
 from monitoru import read_config_file
 from monitoru import server_connection
 from monitoru import create_unique_id
@@ -22,8 +25,12 @@ class MainMonitoring:
                                   self.cpu_percent,
                                   self.ram_percent,
                                   self.disk_usage]
-        self.server_connection = server_connection.ServerConnection(
-            address='localhost')
+        try:
+            self.server_connection = server_connection.ServerConnection(
+                address=self.config_file_reader.get_server_ip())
+        except (gaierror, ConnectionClosed, AttributeError):
+            print("Incorrect Ip, change in config.txt")
+            sys.exit(0)
 
         unique_id_manager = create_unique_id.CreateUniqueId()
         unique_id_manager.handle_unique_id_file()

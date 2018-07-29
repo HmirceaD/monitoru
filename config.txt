@@ -3,3 +3,4 @@ cpu_freq=1
 ram_percent=1
 disk_usage=1
 communication_elapsed_time=5sec
+rabbitmq_ip=127.0.0.1

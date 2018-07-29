@@ -47,3 +47,11 @@ class ConfigFileReader:
         temp_file.close()
 
         return metrics_array
+
+    def get_server_ip(self):
+
+        with open(self.config_file_path, "r") as temp_file:
+            ip_addr = re.search(r'\nrabbitmq_ip='
+                                r'(localhost|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})',
+                                temp_file.read())
+            return ip_addr.group(1)
