@@ -6,9 +6,9 @@ class ServerConnection:
     """Establishes the connection to
     rabbitmq server and sends data to it
     and kills the connection"""
-    def __init__(self, address):
+    def __init__(self, address, port):
         connection = pika.BlockingConnection(
-            pika.ConnectionParameters(address))
+            pika.ConnectionParameters(address, port))
         self.channel = connection.channel()
         self.channel.queue_declare(queue='machine_status')
 

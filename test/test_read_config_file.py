@@ -1,4 +1,5 @@
 import unittest
+from utils import string_resources
 from monitoru.read_config_file import ConfigFileReader
 import os
 
@@ -39,3 +40,23 @@ class TestReadConfigFile(unittest.TestCase):
 
         self.assertEqual(self.read_config_file.get_metrics(), ['0', '0', '0', '0'])
         self.assertNotEqual(self.read_config_file.get_metrics(), ['0', '0', '1', '1'])
+
+    def test_get_server_ip(self):
+        """test get_server_ip if it returns
+        correct ip as a string"""
+        with open(self.config_file_path, "w") as temp_file:
+            temp_file.write(string_resources.get_config_file_structure())
+
+        self.assertEqual(self.read_config_file.get_server_ip(), 'localhost')
+        self.assertNotEqual(self.read_config_file.get_server_ip(), 'muiepsd')
+        self.assertNotEqual(self.read_config_file.get_server_ip(), 'daddylapuscarie')
+
+    def test_get_server_port(self):
+        """test get_server_port if it returns
+        correct port as a string"""
+        with open(self.config_file_path, "w") as temp_file:
+            temp_file.write(string_resources.get_config_file_structure())
+
+        self.assertEqual(self.read_config_file.get_server_port(), '5672')
+        self.assertNotEqual(self.read_config_file.get_server_port(), '420')
+        self.assertNotEqual(self.read_config_file.get_server_port(), '1337')

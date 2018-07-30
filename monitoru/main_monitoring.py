@@ -27,7 +27,8 @@ class MainMonitoring:
                                   self.disk_usage]
         try:
             self.server_connection = server_connection.ServerConnection(
-                address=self.config_file_reader.get_server_ip())
+                address=self.config_file_reader.get_server_ip(),
+                port=self.config_file_reader.get_server_port())
         except (gaierror, ConnectionClosed, AttributeError):
             print("Incorrect Ip, change in config.txt")
             sys.exit(0)

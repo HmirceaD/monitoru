@@ -55,3 +55,10 @@ class ConfigFileReader:
                                 r'(localhost|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})',
                                 temp_file.read())
             return ip_addr.group(1)
+
+    def get_server_port(self):
+
+        with open(self.config_file_path, "r") as temp_file:
+            port = re.search(r'\nrabbitmq_port=(\d{4})',
+                             temp_file.read())
+            return port.group(1)
