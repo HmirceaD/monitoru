@@ -2,10 +2,10 @@
 from threading import Timer
 import json
 import atexit
-import psutil
 import sys
-from pika.exceptions import ConnectionClosed
 from socket import gaierror
+import psutil
+from pika.exceptions import ConnectionClosed
 from monitoru import read_config_file
 from monitoru import server_connection
 from monitoru import create_unique_id

@@ -49,7 +49,7 @@ class ConfigFileReader:
         return metrics_array
 
     def get_server_ip(self):
-
+        """returns the ip from config file"""
         with open(self.config_file_path, "r") as temp_file:
             ip_addr = re.search(r'\nrabbitmq_ip='
                                 r'(localhost|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})',
@@ -57,8 +57,8 @@ class ConfigFileReader:
             return ip_addr.group(1)
 
     def get_server_port(self):
-
+        """returns the port from config file"""
         with open(self.config_file_path, "r") as temp_file:
-            port = re.search(r'\nrabbitmq_port=(\d{4})',
+            port = re.search(r'\nrabbitmq_port=(\d{1,5})',
                              temp_file.read())
             return port.group(1)

@@ -41,8 +41,7 @@ class CreateUniqueId:
                 return 0
 
         if self.system == "Linux":
-
-            return os.path.isfile(self.linux_filepath)
+            return bool(os.path.isfile(self.linux_filepath))
 
     def create_unique_id_file(self):
         """creates the file on windows or linux
