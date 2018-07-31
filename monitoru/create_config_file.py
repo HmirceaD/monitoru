@@ -1,5 +1,4 @@
 """module that holds the CreateConfigFile class"""
-
 import os
 import re
 from utils import string_resources
