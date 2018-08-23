@@ -6,9 +6,9 @@ import sys
 from socket import gaierror
 import psutil
 from pika.exceptions import ConnectionClosed
-from monitoru import read_config_file
-from monitoru import server_connection
-from monitoru import create_unique_id
+from client import server_connection
+from client import config_handler
+import client.file_path
 
 
 class MainMonitoring:
@@ -16,49 +16,45 @@ class MainMonitoring:
     the machine and sends the info to a server as a json
     object converted from a python dictionary"""
     def __init__(self):
-        self.config_file_reader = read_config_file.ConfigFileReader()
+
+        self.config_file_reader = \
+            config_handler.ConfigParser(client.file_path.config_file_path)
+
         self.communication_period = \
-            self.config_file_reader.get_send_communication_time()
-        self.metrics_array = self.config_file_reader.get_metrics()
+            self.config_file_reader.read_time()
+
+        self.metrics_array = self.config_file_reader.read_requirements()
+        self.communication_time = self.config_file_reader.read_time()
         self.monitoring_object = {}
-        self.monitor_functions = [self.cpu_freq,
-                                  self.cpu_percent,
-                                  self.ram_percent,
-                                  self.disk_usage]
+
         try:
             self.server_connection = server_connection.ServerConnection(
-                address=self.config_file_reader.get_server_ip(),
-                port=self.config_file_reader.get_server_port())
+                address=self.config_file_reader.read_rabbitmq_ip(),
+                port=self.config_file_reader.read_rabbitmq_port())
         except (gaierror, ConnectionClosed, AttributeError):
             print("Incorrect Ip, change in config.txt")
-            sys.exit(0)
-
-        unique_id_manager = create_unique_id.CreateUniqueId()
-        unique_id_manager.handle_unique_id_file()
-        self.object_id = unique_id_manager.get_unique_id_from_file()
+            sys.exit(2)
 
         atexit.register(self.server_connection.close_connection)
 
     def start_monitor_loop(self):
         """first gets the information from the config
         file and starts the function to start gathering info"""
-        read_file = read_config_file.ConfigFileReader()
 
-        communication_time = read_file.get_send_communication_time()
-        metrics_array = read_file.get_metrics()
-
-        self.add_metrics_to_monitor_object(communication_time, metrics_array)
+        self.add_metrics_to_monitor_object(self.communication_time, self.metrics_array)
 
     def add_metrics_to_monitor_object(self, communication_time, metrics_array):
         """calls all of the functions enabled in the config file
         and creates the object and sends the object to the through
         the connection object, then starts the timer to call after
         n seconds and calls itself again"""
-        for index in range(len(metrics_array)):
-            if metrics_array[index] == '1':
-                self.monitor_functions[index]()
 
-        self.monitoring_object['node_id'] = self.object_id
+        for metric in metrics_array:
+            print(metric)
+            if hasattr(self, metric):
+                print(metric + "OLE OLE OLE")
+                getattr(self, metric)()
+
         self.server_connection.send_packet(json.dumps(
             self.monitoring_object, indent=1))
 

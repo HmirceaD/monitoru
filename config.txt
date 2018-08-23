@@ -1,7 +1,0 @@
-cpu_percent=1
-cpu_freq=1
-ram_percent=1
-disk_usage=1
-communication_elapsed_time=5sec
-rabbitmq_ip=localhost
-rabbitmq_port=5672
