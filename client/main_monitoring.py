@@ -27,7 +27,7 @@ class MainMonitoring:
         try:
             self.metrics_array = self.config_file_reader.read_requirements()
             self.communication_time = self.config_file_reader.read_time()
-        except ResourceWarning as exp:
+        except (ResourceWarning, ArithmeticError) as exp:
             print(str(exp))
             sys.exit(4)
 

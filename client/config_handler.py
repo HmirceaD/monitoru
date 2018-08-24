@@ -8,10 +8,7 @@ class ConfigParser:
 
         self.CONFIG = configparser.ConfigParser()
 
-        try:
-            self.CONFIG.read(path)
-        except configparser.ParsingError:
-            raise FileNotFoundError("The path you entered isn't correct")
+        self.CONFIG.read(path)
 
     def read_requirements(self):
         try:
@@ -36,7 +33,12 @@ class ConfigParser:
 
     def read_time(self):
         try:
-            return self.CONFIG.get("REQUIREMENTS", "time")
+            time = self.CONFIG.get("REQUIREMENTS", "time")
+
+            if time == 0:
+                raise ArithmeticError("Sending period must be greater than zero")
+            else:
+                return time
         except configparser.MissingSectionHeaderError:
             raise ResourceWarning("The header you specified does not exist"
                                   "\nPlease check config file for errors")
