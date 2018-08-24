@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 .idea/*
 *.pyc
+.idea/workspace.xml
 
 # C extensions
 *.so
