@@ -17,23 +17,32 @@ class MainMonitoring:
     object converted from a python dictionary"""
     def __init__(self):
 
-        self.config_file_reader = \
-            config_handler.ConfigParser(client.file_path.config_file_path)
+        try:
+            self.config_file_reader = \
+                config_handler.ConfigParser(client.file_path.config_file_path)
+        except FileNotFoundError as exp:
+            print(str(exp))
+            sys.exit(3)
 
-        self.communication_period = \
-            self.config_file_reader.read_time()
+        try:
+            self.metrics_array = self.config_file_reader.read_requirements()
+            self.communication_time = self.config_file_reader.read_time()
+        except ResourceWarning as exp:
+            print(str(exp))
+            sys.exit(4)
 
-        self.metrics_array = self.config_file_reader.read_requirements()
-        self.communication_time = self.config_file_reader.read_time()
         self.monitoring_object = {}
 
         try:
             self.server_connection = server_connection.ServerConnection(
                 address=self.config_file_reader.read_rabbitmq_ip(),
                 port=self.config_file_reader.read_rabbitmq_port())
-        except (gaierror, ConnectionClosed, AttributeError):
-            print("Incorrect Ip, change in config.txt")
-            sys.exit(2)
+        except (gaierror, ConnectionClosed, AttributeError, ResourceWarning) as exp:
+            print("Something went wrong when connecting to the RabbitMq server"
+                  "\n check if ip and port in the config file are correct and"
+                  "\n check your internet connection"
+                  "\n\n {}".format(str(exp)))
+            sys.exit(5)
 
         atexit.register(self.server_connection.close_connection)
 
@@ -50,9 +59,7 @@ class MainMonitoring:
         n seconds and calls itself again"""
 
         for metric in metrics_array:
-            print(metric)
             if hasattr(self, metric):
-                print(metric + "OLE OLE OLE")
                 getattr(self, metric)()
 
         self.server_connection.send_packet(json.dumps(

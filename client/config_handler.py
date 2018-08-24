@@ -18,8 +18,6 @@ class ConfigParser:
 
             character_list = self.CONFIG.get("REQUIREMENTS", "metrics")
 
-            #config file returns the list of metrics as chars
-
             temp_list = ""
             for chars in character_list:
                 temp_list += chars
