@@ -8,7 +8,6 @@ import psutil
 from pika.exceptions import ConnectionClosed
 from client import server_connection
 from client import config_handler
-import client.file_path
 
 
 class MainMonitoring:
