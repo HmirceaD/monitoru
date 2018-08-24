@@ -1,8 +1,11 @@
 """Module holds unittest for the MainMonitoringClass"""
+import os
 from unittest import TestCase
 from unittest.mock import MagicMock
 from unittest.mock import patch
 from unittest.mock import call
+from client import main_monitoring
+from client import file_path
 
 
 class TestMainMonitoring(TestCase):
@@ -11,28 +14,40 @@ class TestMainMonitoring(TestCase):
     are called"""
     @classmethod
     def setUpClass(cls):
-        cls.main_monitoring_object = MainMonitoring()
+        cls.test_file = open("test.txt", "w+") \
+            .write("[REQUIREMENTS]\n"
+                   "metrics = cpu_percent,cpu_freq,ram_percent,disk_usage\n"
+                   "time = 5\n"
+                   "[RABBIT]\n"
+                   "ip = localhost\n"
+                   "port = 5672")
+
+        cls.main_monitoring_object = main_monitoring.MainMonitoring("test.txt")
+
+    @classmethod
+    def tearDownClass(cls):
+        os.remove("test.txt")
 
     def test_add_metrics(self):
         """tests to see if the correct metrics are called
         given the [1,1,1,1] metrics array"""
         source_mock = MagicMock()
 
-        with patch('monitoru.main_monitoring.MainMonitoring.cpu_percent',
+        with patch('client.main_monitoring.MainMonitoring.cpu_percent',
                    source_mock.function1), \
-                patch('monitoru.main_monitoring.MainMonitoring.cpu_freq',
+                patch('client.main_monitoring.MainMonitoring.cpu_freq',
                       source_mock.function2), \
-                patch('monitoru.main_monitoring.MainMonitoring.ram_percent',
+                patch('client.main_monitoring.MainMonitoring.ram_percent',
                       source_mock.function3), \
-                patch('monitoru.main_monitoring.MainMonitoring.disk_usage',
+                patch('client.main_monitoring.MainMonitoring.disk_usage',
                       source_mock.function4):
 
-            expected = [call.function2(),
-                        call.function1(),
+            expected = [call.function1(),
+                        call.function2(),
                         call.function3(),
                         call.function4()]
 
-            obj = MainMonitoring()
+            obj = main_monitoring.MainMonitoring("test.txt")
             obj.start_monitor_loop()
 
             self.assertEqual(source_mock.mock_calls, expected)
@@ -40,8 +55,9 @@ class TestMainMonitoring(TestCase):
     def test_start_monitor_loop(self):
         """tests to see if the start_monitor_loop
         function calls the correct function"""
-        with patch.object(MainMonitoring,
-                          "add_metrics_to_monitor_object") as mock:
+
+        with patch.object(main_monitoring.MainMonitoring,
+                          "add_metrics") as mock:
             self.main_monitoring_object.start_monitor_loop()
 
         mock.assert_called()

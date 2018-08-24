@@ -15,7 +15,8 @@ def init_client():
 
     try:
         if os.path.isfile(sys.argv[1]):
-            client.file_path.config_file_path = sys.argv[1]
+            monitoru = main_monitoring.MainMonitoring(sys.argv[1])
+            monitoru.start_monitor_loop()
         else:
             print("You did not enter a correct config file")
             sys.exit(1)
@@ -23,5 +24,4 @@ def init_client():
         print("You must enter a config file")
         sys.exit(2)
 
-    monitoru = main_monitoring.MainMonitoring()
-    monitoru.start_monitor_loop()
+

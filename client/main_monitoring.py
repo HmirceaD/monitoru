@@ -15,11 +15,11 @@ class MainMonitoring:
     """Class that gathers the specific information about
     the machine and sends the info to a server as a json
     object converted from a python dictionary"""
-    def __init__(self):
+    def __init__(self, path):
 
         try:
             self.config_file_reader = \
-                config_handler.ConfigParser(client.file_path.config_file_path)
+                config_handler.ConfigParser(path)
         except FileNotFoundError as exp:
             print(str(exp))
             sys.exit(3)
@@ -50,9 +50,9 @@ class MainMonitoring:
         """first gets the information from the config
         file and starts the function to start gathering info"""
 
-        self.add_metrics_to_monitor_object(self.communication_time, self.metrics_array)
+        self.add_metrics(self.communication_time, self.metrics_array)
 
-    def add_metrics_to_monitor_object(self, communication_time, metrics_array):
+    def add_metrics(self, communication_time, metrics_array):
         """calls all of the functions enabled in the config file
         and creates the object and sends the object to the through
         the connection object, then starts the timer to call after
@@ -66,7 +66,7 @@ class MainMonitoring:
             self.monitoring_object, indent=1))
 
         pid = Timer(int(communication_time),
-                    self.add_metrics_to_monitor_object,
+                    self.add_metrics,
                     args=(communication_time, metrics_array,))
         pid.start()
 
