@@ -3,7 +3,6 @@ from unittest import TestCase
 from unittest.mock import MagicMock
 from unittest.mock import patch
 from unittest.mock import call
-from monitoru.main_monitoring import MainMonitoring
 
 
 class TestMainMonitoring(TestCase):

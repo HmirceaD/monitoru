@@ -3,9 +3,6 @@ from unittest import TestCase
 from unittest.mock import patch
 from unittest.mock import call
 from unittest.mock import MagicMock
-from monitoru import main_loop
-from monitoru.create_config_file import CreateConfigFile
-from monitoru.main_monitoring import MainMonitoring
 
 
 class TestMainLoop(TestCase):
@@ -17,12 +14,9 @@ class TestMainLoop(TestCase):
         source_mock = MagicMock()
 
         with patch('monitoru.main_loop.init_config',
-                   source_mock.function1), \
-                patch('monitoru.main_loop.begin_sending_packets',
-                      source_mock.function2):
+                   source_mock.function1):
 
-            expected = [call.function1(),
-                        call.function2()]
+            expected = call.function1()
 
             main_loop.init_client()
             self.assertEqual(source_mock.mock_calls, expected)
