@@ -36,7 +36,8 @@ class MainMonitoring:
             self.server_connection = server_connection.ServerConnection(
                 address=self.config_file_reader.read_rabbitmq_ip(),
                 port=self.config_file_reader.read_rabbitmq_port())
-        except (gaierror, ConnectionClosed, AttributeError, ResourceWarning) as exp:
+        except (gaierror, ConnectionClosed,
+                AttributeError, ResourceWarning) as exp:
             print("Something went wrong when connecting to the RabbitMq server"
                   "\n check if ip and port in the config file are correct and"
                   "\n check your internet connection"

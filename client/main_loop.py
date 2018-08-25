@@ -1,5 +1,5 @@
-"""start the loop,
-check the config files for the things to monitor and send to rabbitmq"""
+"""start the loop, check if it received
+the config file parameter"""
 
 import sys
 import os
@@ -19,6 +19,3 @@ def init_client():
     except IndexError:
         print("You must enter a config file")
         sys.exit(2)
-
-
-init_client()
