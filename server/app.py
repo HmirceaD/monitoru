@@ -121,6 +121,3 @@ def node_route(node_id):
     return render_template("nodes.html",
                            title="Node: %s" % node_id,
                            nodes=node_value)
-
-
-start_server()

@@ -30,7 +30,7 @@ class DatabaseHandler(object):
         return nodes.find({'_id': ObjectId(node_id)})
 
     def get_distinct_nodes(self):
-        """returns the last packet from distinct nodes"""
+        """returns all nodes"""
         mongo = PyMongo(self.app)
         node_ids = mongo.db.node
 

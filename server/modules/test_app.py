@@ -45,12 +45,3 @@ class TestApp(TestCase):
         result = self.app.get('/nodes')
         self.assertEqual(result.status_code, 200)
         self.assert_template_used('nodes.html')
-
-    '''@classmethod
-    def test_start_consumer(cls):
-        """tests if the start_consumer function
-        calls the correct function"""
-        with patch.object(ConsumePacketThread, "start") as mock:
-            app.start_consumer()
-
-        mock.assert_called()'''
