@@ -74,3 +74,55 @@ class ConfigParser:
         except configparser.NoOptionError:
             raise ResourceWarning("The option you specified does not exist"
                                   "\nPlease check config file for errors")
+
+    def read_server_ip(self):
+        try:
+            return self.CONFIG.get("SERVER", "server_ip")
+        except configparser.MissingSectionHeaderError:
+            raise ResourceWarning("The header you specified does not exist"
+                                  "\nPlease check config file for errors")
+        except configparser.NoSectionError:
+            raise ResourceWarning("The Section you specified does not exist"
+                                  "\nPlease check config file for errors")
+        except configparser.NoOptionError:
+            raise ResourceWarning("The option you specified does not exist"
+                                  "\nPlease check config file for errors")
+
+    def read_server_port(self):
+        try:
+            return self.CONFIG.get("SERVER", "server_port")
+        except configparser.MissingSectionHeaderError:
+            raise ResourceWarning("The header you specified does not exist"
+                                  "\nPlease check config file for errors")
+        except configparser.NoSectionError:
+            raise ResourceWarning("The Section you specified does not exist"
+                                  "\nPlease check config file for errors")
+        except configparser.NoOptionError:
+            raise ResourceWarning("The option you specified does not exist"
+                                  "\nPlease check config file for errors")
+
+    def read_mongo_uri(self):
+        try:
+            return self.CONFIG.get("MONGO", "mongo_uri")
+        except configparser.MissingSectionHeaderError:
+            raise ResourceWarning("The header you specified does not exist"
+                                  "\nPlease check config file for errors")
+        except configparser.NoSectionError:
+            raise ResourceWarning("The Section you specified does not exist"
+                                  "\nPlease check config file for errors")
+        except configparser.NoOptionError:
+            raise ResourceWarning("The option you specified does not exist"
+                                  "\nPlease check config file for errors")
+
+    def read_mongo_db(self):
+        try:
+            return self.CONFIG.get("MONGO", "mongo_db")
+        except configparser.MissingSectionHeaderError:
+            raise ResourceWarning("The header you specified does not exist"
+                                  "\nPlease check config file for errors")
+        except configparser.NoSectionError:
+            raise ResourceWarning("The Section you specified does not exist"
+                                  "\nPlease check config file for errors")
+        except configparser.NoOptionError:
+            raise ResourceWarning("The option you specified does not exist"
+                                  "\nPlease check config file for errors")

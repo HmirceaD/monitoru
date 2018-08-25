@@ -9,7 +9,6 @@ from client import main_monitoring
 def init_client():
     """starts the loop which will
      monitor the metrics and the configured time frame"""
-
     try:
         if os.path.isfile(sys.argv[1]):
             monitoru = main_monitoring.MainMonitoring(sys.argv[1])
@@ -22,3 +21,4 @@ def init_client():
         sys.exit(2)
 
 
+init_client()

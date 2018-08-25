@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+    {% for i in nodes %}
+        <hr>
+        <h4>{{ i }}:{{ nodes[i] }}</h4>
+    {% endfor %}
+</body>
+</html>

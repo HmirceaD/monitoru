@@ -5,7 +5,6 @@ from unittest.mock import MagicMock
 from unittest.mock import patch
 from unittest.mock import call
 from client import main_monitoring
-from client import file_path
 
 
 class TestMainMonitoring(TestCase):
